@@ -25,7 +25,7 @@ public class Employer extends AbstractEntity {
     public void setLocation(String location) {
         this.location = location;
     }
-//    Is this needed?
-//    @Override
-//    public String toString() {return location;}
+
+    @Override
+    public String toString() {return location;}
 }
