@@ -5,12 +5,6 @@ import javax.persistence.*;
 @Entity
 public class Job extends AbstractEntity{
 
-    @Id
-    @GeneratedValue
-    private int id;
-
-    private String name;
-
     private String employer;
     private String skills;
 
@@ -21,16 +15,6 @@ public class Job extends AbstractEntity{
         super();
         this.employer = anEmployer;
         this.skills = someSkills;
-    }
-
-    // Getters and setters.
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmployer() {
