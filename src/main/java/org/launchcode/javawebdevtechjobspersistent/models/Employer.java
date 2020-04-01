@@ -16,8 +16,8 @@ public class Employer extends AbstractEntity {
     @Size(max = 50, message = "Location must be less than 50 characters")
     private String location;
 
-    @OneToMany
-    @JoinColumn(name = "jobs_id")//"jobs_id"? where is this from?
+    @OneToMany(mappedBy = "employer")
+    //@JoinColumn(name = "jobs_id")//"jobs_id"? where is this from? Is this needed?
     private List<Job> jobs = new ArrayList<>();
 
     public Employer(@NotBlank(message = "Location is required") @Size(max = 50, message = "Location must be less than 50 characters") String location) {
