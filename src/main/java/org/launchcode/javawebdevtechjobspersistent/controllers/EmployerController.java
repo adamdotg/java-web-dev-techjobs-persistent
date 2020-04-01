@@ -47,4 +47,10 @@ public class EmployerController {
             return "redirect:../";
         }
     }
+
+    @GetMapping
+    public String displayAllEmployers (Model model) {
+      model.addAttribute("employers", employerRepository.findAll());
+      return "employers/index";
+    }
 }
