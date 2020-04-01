@@ -35,9 +35,9 @@ public class HomeController {
     @GetMapping("add")
     public String displayAddJobForm(Model model) {
         model.addAttribute("title", "Add Job");
-        model.addAttribute(new Job());
         model.addAttribute("employers", employerRepository.findAll());
         model.addAttribute("skills", skillRepository.findAll());
+        model.addAttribute(new Job());
         return "add";
     }
 
@@ -47,11 +47,19 @@ public class HomeController {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Job");
+            //TODO: Add stuff here (Part 3: Updating HomeController 3.)
             return "add";
         }
 
         return "redirect:";
     }
+
+
+
+
+
+
+
 
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
