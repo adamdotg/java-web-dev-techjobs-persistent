@@ -59,25 +59,18 @@ public class HomeController {
             return "add";
         }
 
-        Optional<Employer> optEmployer = employerRepository.findById(employerId);
+        Optional optEmployer = employerRepository.findById(employerId);
         if(optEmployer.isPresent()) {
             newJob.setEmployer((Employer) optEmployer.get());
         } else {
             return "add";
         }
         List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
-        newJob.setSkills(skillObjs);
+        //newJob.setSkills(skillObjs); doubling skills entries?
         jobRepository.save(newJob);
 
         return "redirect:";
     }
-
-
-
-
-
-
-
 
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
