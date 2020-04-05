@@ -40,7 +40,7 @@ public class SkillController {
 
     Optional<Skill> optSkill = skillRepository.findById(skillId);
     if (optSkill.isPresent()) {
-      Skill skill = (Skill) optSkill.get();
+      Skill skill = optSkill.get();
       model.addAttribute("skill", skill);
       return "skills/view";
     } else {
