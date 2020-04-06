@@ -65,7 +65,7 @@ public class HomeController {
         } else {
             return "add";
         }
-        //List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
+        //List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills); variable skillObjs never used?
         //newJob.setSkills(skillObjs); doubling skills entries?
         jobRepository.save(newJob);
 
