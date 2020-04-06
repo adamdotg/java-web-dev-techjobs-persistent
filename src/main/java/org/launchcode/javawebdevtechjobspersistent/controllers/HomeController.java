@@ -52,21 +52,21 @@ public class HomeController {
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
                                        Errors errors, Model model, @RequestParam int employerId, @RequestParam List<Integer> skills) {
 
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Job");
-            model.addAttribute("employers", employerRepository.findAll());
-            model.addAttribute("skills", skillRepository.findAll());
-            return "add";
-        }
+      if (errors.hasErrors()) {
+          model.addAttribute("title", "Add Job");
+          model.addAttribute("employers", employerRepository.findAll());
+          model.addAttribute("skills", skillRepository.findAll());
+          return "add";
+      }
 
-        Optional<Employer> optEmployer = employerRepository.findById(employerId);
-        if(optEmployer.isPresent()) {
-            newJob.setEmployer((Employer) optEmployer.get());
-        } else {
-            return "add";
-        }
-        //List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills); variable skillObjs never used?
-        //newJob.setSkills(skillObjs); doubling skills entries?
+      Optional<Employer> optEmployer = employerRepository.findById(employerId);
+      if(optEmployer.isPresent()) {
+          newJob.setEmployer((Employer) optEmployer.get());
+      } else {
+          return "add";
+      }
+      //List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills); variable skillObjs never used?
+      //newJob.setSkills(skillObjs); doubling skills entries?
         jobRepository.save(newJob);
 
         return "redirect:";
@@ -83,5 +83,11 @@ public class HomeController {
       } else {
         return "redirect:../";
       }
+    }
+
+    @GetMapping
+    public String displayViewAllJobs(Model model) {
+      model.addAttribute("jobs", jobRepository.findAll());
+      return "index";
     }
 }
