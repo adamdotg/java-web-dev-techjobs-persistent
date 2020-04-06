@@ -65,18 +65,29 @@ public class HomeController {
         } else {
             return "add";
         }
-        List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
+        //List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
         //newJob.setSkills(skillObjs); doubling skills entries?
         jobRepository.save(newJob);
 
         return "redirect:";
     }
 
+//    @GetMapping("view/{jobId}")
+//    public String displayViewJob(Model model, @PathVariable int jobId) {
+//        model.addAttribute("job", jobRepository.findAll());
+//        return "view";
+//    }
+
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
 
+      Optional<Job> optJob = jobRepository.findById(jobId);
+      if (optJob.isPresent()) {
+        Job job = (Job) optJob.get();
+        model.addAttribute("job", job);
         return "view";
+      } else {
+        return "redirect:../";
+      }
     }
-
-
 }
